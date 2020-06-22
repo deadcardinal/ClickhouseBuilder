@@ -59,6 +59,11 @@ class JoinClause
     private $subQuery;
 
     /**
+     * @var Identifier
+     */
+    private $alias;
+
+    /**
      * JoinClause constructor.
      *
      * @param BaseBuilder $query
@@ -323,5 +328,29 @@ class JoinClause
             },
             $array
         );
+    }
+
+    /**
+     * Set alias to use for join rows.
+     *
+     * @param string $alias
+     *
+     * @return JoinClause
+     */
+    public function alias(string $alias): self
+    {
+        $this->alias = new Identifier($alias);
+
+        return $this;
+    }
+
+    /**
+     * Get column to use for join rows.
+     *
+     * @return Identifier
+     */
+    public function getAlias(): ?Identifier
+    {
+        return $this->alias;
     }
 }
